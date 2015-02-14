@@ -1,5 +1,5 @@
 /**
- *  Foscam Universal Device
+ *  Foscam Universal Device V2
  *
 	V1 
 	
