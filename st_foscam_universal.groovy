@@ -1,7 +1,29 @@
 /**
  *  Foscam Universal Device
  *
- *  Copyright 2014 skp19
+	V1 
+	
+	Copyright 2014 skp19
+	
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+	
+	    http://www.apache.org/licenses/LICENSE-2.0
+	
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+	
+	V2 
+	
+	Copyright 2015 Jody Albritton
+	
+	Code is liceseded for personal use only. Not for resale. 
+	
+ *  
  *
  */
 metadata {
@@ -52,7 +74,7 @@ metadata {
 	}
 
 	tiles {
-        carouselTile("cameraDetails", "device.image", width: 3, height: 2) { }
+        
 
         standardTile("camera", "device.alarmStatus", width: 1, height: 1, canChangeIcon: true, inactiveLabel: true, canChangeBackground: true) {
           state "off", label: "off", action: "toggleAlarm", icon: "st.camera.dropcam-centered", backgroundColor: "#FFFFFF"
@@ -149,10 +171,10 @@ metadata {
         standardTile("blank", "device.image", width: 1, height: 1, canChangeIcon: false,  canChangeBackground: false, decoration: "flat") {
           state "blank", label: "", action: "", icon: "", backgroundColor: "#FFFFFF"
         }
-
+        carouselTile("cameraDetails", "device.image", width: 3, height: 2) { }
         main "camera"
 			//details(["cameraDetails", "take", "blank", "alarmStatus", "ledAuto", "ledOn", "ledOff", "refresh"]) //**Uncomment this line and comment out the next line to hide the PTZ controls
-			details(["cameraDetails", "take", "blank", "alarmStatus", "ledAuto", "ledOn", "ledOff", "preset1", "preset2", "preset3", "cruisemap1", "cruisemap2", "stopcruise", "blank", "up", "blank", "left", "stop", "right", "blank", "down", "blank", "refresh"])
+			details([ "take", "blank", "alarmStatus", "ledAuto", "ledOn", "ledOff", "preset1", "preset2", "preset3", "cruisemap1", "cruisemap2", "stopcruise", "blank", "up", "blank", "left", "stop", "right", "blank", "down", "blank", "refresh", "cameraDetails"])
 	}
 }
 
