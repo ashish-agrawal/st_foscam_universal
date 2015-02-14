@@ -21,7 +21,7 @@
 	
 	Copyright 2015 Jody Albritton
 	
-	Code is liceseded for personal use only. Not for resale. 
+	Code is licenesed for personal use only. Not for resale. 
 	
  *  
  *
