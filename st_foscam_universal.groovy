@@ -27,7 +27,7 @@
  *
  */
 metadata {
-	definition (name: "Foscam Universal Device", namespace: "skp19", author: "skp19") {
+	definition (name: "Foscam Universal Device V2", namespace: "jodyalbritton", author: "jodyalbritton") {
 		capability "Polling"
 		capability "Image Capture"
         
