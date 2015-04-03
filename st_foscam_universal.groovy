@@ -23,11 +23,16 @@
 	
 	Code is licensed for personal use only. Not for resale. 
 	
+    V3
+    
+    Copyright 2015 Ashish Agrawal 
+    Added code for retaining alarm settings 
+    
  *  
  *
  */
 metadata {
-	definition (name: "Foscam Universal Device V2", namespace: "jodyalbritton", author: "jodyalbritton") {
+	definition (name: "Foscam Universal Device V2", namespace: "ashishagrawal", author: "ashishagrawal") {
 		capability "Polling"
 		capability "Image Capture"
         
@@ -71,7 +76,29 @@ metadata {
 		input("preset3", "text", title: "Preset 3 (For HD cameras only)", description: "Name of your third preset position")
 		input("cruisemap1", "text", title: "Cruise Map 1 (For HD cameras only. Non-HD cameras will default to Horizontal.)", description: "Name of your first cruise map", defaultValue: "Horizontal")
 		input("cruisemap2", "text", title: "Cruise Map 2 (For HD cameras only. Non-HD cameras will default to Vertical.)", description: "Name of your second cruise map", defaultValue: "Vertical")
-	}
+        input("snapInterval", "string", title: "Snap Interval for Alarm Motion Detection (For HD Cameras only)", description: "1 for 1s, 2 for 2s... 5 for 5s (max 5)", defaultValue: "5")
+        input("sensitivity", "string", title: "Sensitivity for Alarm Motion Detection (For HD Cameras only)", description: "-2:Lowest, -1:Lower, 0:Low, 1:Medium, 2:High", defaultValue: "1")
+        input("linkage", "string", title: "Action Setup for Alarm Motion Detection (For HD Cameras only)", description: "Camera Sound:1, Send Email:2, Take Snapashot:4, Recording:8 (Sum digits for multiple selections)", defaultValue: "15")
+        input("triggerInterval", "string", title: "Triggered Interval for Alarm Motion Detection (For HD Cameras only)", description: "0 for 5s, 1 for 6s... 10 for 15s (max 10)", defaultValue: "10")
+        input("schedule0", "string", title: "Alarm Schedule for Monday", description: "281474976710655 for entire day", defaultValue: "281474976710655")
+        input("schedule1", "string", title: "Alarm Schedule for Tuesday", description: "281474976710655 for entire day", defaultValue: "281474976710655")
+        input("schedule2", "string", title: "Alarm Schedule for Wednesday", description: "281474976710655 for entire day", defaultValue: "281474976710655")
+        input("schedule3", "string", title: "Alarm Schedule for Thursday", description: "281474976710655 for entire day", defaultValue: "281474976710655")
+        input("schedule4", "string", title: "Alarm Schedule for Friday", description: "281474976710655 for entire day", defaultValue: "281474976710655")
+        input("schedule5", "string", title: "Alarm Schedule for Saturday", description: "281474976710655 for entire day", defaultValue: "281474976710655")
+        input("schedule6", "string", title: "Alarm Schedule for Sunday", description: "281474976710655 for entire day", defaultValue: "281474976710655")
+        input("area0", "string", title: "Tiles for Detection Area", description: "Each tile in 2^tile number; use 1023 for all", defaultValue: "1023")
+        input("area1", "string", title: "Tiles for Detection Area", description: "Each tile in 2^tile number; use 1023 for all", defaultValue: "1023")
+        input("area2", "string", title: "Tiles for Detection Area", description: "Each tile in 2^tile number; use 1023 for all", defaultValue: "1023")
+        input("area3", "string", title: "Tiles for Detection Area", description: "Each tile in 2^tile number; use 1023 for all", defaultValue: "1023")
+        input("area4", "string", title: "Tiles for Detection Area", description: "Each tile in 2^tile number; use 1023 for all", defaultValue: "1023")
+        input("area5", "string", title: "Tiles for Detection Area", description: "Each tile in 2^tile number; use 1023 for all", defaultValue: "1023")
+        input("area6", "string", title: "Tiles for Detection Area", description: "Each tile in 2^tile number; use 1023 for all", defaultValue: "1023")
+        input("area7", "string", title: "Tiles for Detection Area", description: "Each tile in 2^tile number; use 1023 for all", defaultValue: "1023")
+        input("area8", "string", title: "Tiles for Detection Area", description: "Each tile in 2^tile number; use 1023 for all", defaultValue: "1023")
+        input("area9", "string", title: "Tiles for Detection Area", description: "Each tile in 2^tile number; use 1023 for all", defaultValue: "1023")
+
+}
 
 	tiles {
         
@@ -206,7 +233,7 @@ def alarmOn() {
 	log.debug "Enabling Alarm"
     sendEvent(name: "alarmStatus", value: "on");
     if(hdcamera == "true") {
-		hubGet("cmd=setMotionDetectConfig&isEnable=1")
+		hubGet("cmd=setMotionDetectConfig&isEnable=1&sensitivity=${sensitivity}&snapInterval=${snapInterval}&linkage=${linkage}&triggerInterval=${triggerInterval}&schedule0=${schedule0}&schedule1=${schedule1}&schedule2=${schedule2}&schedule3=${schedule3}&schedule4=${schedule4}&schedule5=${schedule5}&schedule6=${schedule6}&area0=${area0}&area1=${area1}&area2=${area2}&area3=${area3}&area4=${area4}&area5=${area5}&area6=${area6}&area7=${area7}&area8=${area8}&area9=${area9}")
     }
     else {
     	hubGet("/set_alarm.cgi?motion_armed=1&")
