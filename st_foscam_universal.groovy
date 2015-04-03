@@ -32,7 +32,7 @@
  *
  */
 metadata {
-	definition (name: "Foscam Universal Device V2", namespace: "ashishagrawal", author: "ashishagrawal") {
+	definition (name: "Foscam Universal Device V3", namespace: "ashishagrawal", author: "ashishagrawal") {
 		capability "Polling"
 		capability "Image Capture"
         
